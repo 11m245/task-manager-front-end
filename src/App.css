@@ -1,38 +1,56 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  min-width: 100vw;
   min-height: 100vh;
+  /* overflow: hidden; */
+  /* border: 1px solid red; */
+}
+
+.project-container{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid green; */
+}
+
+.page-container{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+}
+
+.login-wrapper, .signup-wrapper{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  height: 100%;
+  }
+
+
+.login-form-container, .signup-form-container{
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  padding: 20px;
+  /* border: 1px solid black; */
+ 
 }
 
-.App-link {
-  color: #61dafb;
+.signup-form-container{
+  /* overflow: scroll; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-form, .signup-form{
+display: grid;
+gap: 10px;
+
+}
+
+.form-menus button{
+  border: none;
 }
