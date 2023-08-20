@@ -25,7 +25,7 @@ function LoginForm() {
   const login = async (values) => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${serverUrl}/finance/login`, {
+      const response = await fetch(`${serverUrl}/shop/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -35,7 +35,7 @@ function LoginForm() {
         localStorage.setItem("token", data.token);
         setIsLoading(false);
         toast.success(data.message);
-        navigate("/user");
+        navigate(data.isOperator ? "/operator" : "/shop");
       } else {
         const data = await response.json();
         setIsLoading(false);
@@ -94,7 +94,7 @@ function LoginForm() {
             </button>
             <button
               className="text-primary bg-transparent"
-              onClick={() => navigate("signup")}
+              onClick={() => navigate("/signup")}
             >
               Sign Up
             </button>

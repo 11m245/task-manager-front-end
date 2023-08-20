@@ -6,6 +6,12 @@ import { Login } from "./components/Login";
 import { SignUp } from "./components/SignUp";
 import { NotFound } from "./components/NotFound";
 import { ToastContainer } from "react-toastify";
+import { ActivateUser } from "./pages/ActivateUser";
+import "react-toastify/dist/ReactToastify.css";
+import { ShopLayout } from "./pages/ShopLayout";
+import { OperatorLayout } from "./pages/OperatorLayout";
+import { AddTask } from "./pages/AddTask";
+
 export const taskAppContext = createContext();
 function App() {
   const tasks = [
@@ -31,26 +37,6 @@ function App() {
     },
   ];
 
-  const users = [
-    {
-      id: "userId1",
-      name: "name1",
-      mobile: 9955664455,
-      email: "aaa@gmail.com",
-      managerId: "manager1",
-      createdAt: new Date(),
-      isOperator: true,
-    },
-    {
-      id: "userId2",
-      name: "name2",
-      mobile: 9955664456,
-      email: "bbb@gmail.com",
-      managerId: "manager1",
-      createdAt: new Date(),
-      isOperator: true,
-    },
-  ];
   const [isMobile, setIsMobile] = useState(
     window.innerWidth < 720 ? true : false
   );
@@ -79,6 +65,14 @@ function App() {
             <Route index element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="login" element={<Login />} />
+            <Route path="shop" element={<ShopLayout />}>
+              <Route index element={<AddTask />} />
+            </Route>
+            <Route path="operator" element={<OperatorLayout />}>
+              {/* <Route index element={<AddTask />} /> */}
+            </Route>
+
+            <Route path="activate/:id" element={<ActivateUser />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
