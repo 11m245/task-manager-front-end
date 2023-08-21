@@ -8,8 +8,13 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function AllTasks({ tasks }) {
-  const { operators, serverUrl, fetchTasksState, setFetchTasksState } =
-    useContext(taskAppContext);
+  const {
+    operators,
+    serverUrl,
+    fetchTasksState,
+    setFetchTasksState,
+    userInfo,
+  } = useContext(taskAppContext);
   const navigate = useNavigate();
   const columns = [
     { id: "task", label: "Task", minWidth: 170 },
@@ -101,7 +106,13 @@ function AllTasks({ tasks }) {
             <CheckCircleOutlineIcon />
           </IconButton>
           <IconButton
-            onClick={() => navigate(`/shop/task/${task._id}`)}
+            onClick={() =>
+              navigate(
+                userInfo.role == "shop"
+                  ? `/shop/task/${task._id}`
+                  : `/operator/task/${task._id}`
+              )
+            }
             color={task.isCompleted === true ? "secondary" : "null"}
             aria-label="view task"
           >

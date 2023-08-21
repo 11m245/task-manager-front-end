@@ -22,17 +22,24 @@ function AddTaskForm() {
     customerName: yup.string().required(),
     customerMobile: yup.string().required(),
   };
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
-    useFormik({
-      initialValues: {
-        description: "",
-        assignedUser: "",
-        customerName: "",
-        customerMobile: "",
-      },
-      validationSchema: yup.object(initialValidationSchema),
-      onSubmit: () => addTask(values),
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    resetForm,
+  } = useFormik({
+    initialValues: {
+      description: "",
+      assignedUser: "",
+      customerName: "",
+      customerMobile: "",
+    },
+    validationSchema: yup.object(initialValidationSchema),
+    onSubmit: () => addTask(values),
+  });
 
   async function addTask(values) {
     // console.log("add task values", values);
@@ -48,10 +55,13 @@ function AddTaskForm() {
     // console.log("addTask response ", response);
     const data = await response.json();
     setIsLoading(false);
-    // console.log("addTask response data", data);
+    console.log("addTask response data", data);
     data.message === "task added"
       ? toast.success(data.message)
       : toast.error(data.message);
+    if (data.message === "task added") {
+      resetForm();
+    }
   }
   return (
     <>

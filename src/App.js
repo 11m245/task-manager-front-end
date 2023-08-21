@@ -95,6 +95,7 @@ function App() {
                 path="allTasks"
                 element={<AllTasks tasks={operatorTasks} />}
               />
+              <Route path="task/:id" element={<ViewTask />} />
             </Route>
 
             <Route path="activate/:id" element={<ActivateUser />} />

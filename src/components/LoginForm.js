@@ -104,6 +104,27 @@ function LoginForm() {
               Sign Up
             </button>
           </div>
+          <div className="demo-login-buttons d-flex justify-content-between">
+            <Button
+              type="button"
+              variant="contained"
+              color="success"
+              onClick={() =>
+                login({ email: "operator1@gmail.com", password: "12345678" })
+              }
+            >
+              Operator1
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              onClick={() =>
+                login({ email: "sivaraj2siva@gmail.com", password: "12345678" })
+              }
+            >
+              Shop
+            </Button>
+          </div>
         </form>
       </div>
     </>
