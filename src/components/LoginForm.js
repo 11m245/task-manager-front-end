@@ -9,7 +9,7 @@ import { CustomLoadingButton } from "./customLoadingButton";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const { serverUrl } = useContext(taskAppContext);
+  const { serverUrl, setUserInfo } = useContext(taskAppContext);
   const navigate = useNavigate();
   const initialValidationSchema = {
     email: yup.string().min(8).email(),
@@ -25,7 +25,7 @@ function LoginForm() {
   const login = async (values) => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${serverUrl}/finance/login`, {
+      const response = await fetch(`${serverUrl}/shop/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -35,7 +35,12 @@ function LoginForm() {
         localStorage.setItem("token", data.token);
         setIsLoading(false);
         toast.success(data.message);
-        navigate("/user");
+        navigate(data.isOperator ? "/operator" : "/shop");
+        setUserInfo({
+          name: data.userInfo.name,
+          shopName: data.userInfo.shopName,
+          role: data.isOperator ? "operator" : "shop",
+        });
       } else {
         const data = await response.json();
         setIsLoading(false);
@@ -94,10 +99,31 @@ function LoginForm() {
             </button>
             <button
               className="text-primary bg-transparent"
-              onClick={() => navigate("signup")}
+              onClick={() => navigate("/signup")}
             >
               Sign Up
             </button>
+          </div>
+          <div className="demo-login-buttons d-flex justify-content-between">
+            <Button
+              type="button"
+              variant="contained"
+              color="success"
+              onClick={() =>
+                login({ email: "operator1@gmail.com", password: "12345678" })
+              }
+            >
+              Operator1
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              onClick={() =>
+                login({ email: "sivaraj2siva@gmail.com", password: "12345678" })
+              }
+            >
+              Shop
+            </Button>
           </div>
         </form>
       </div>

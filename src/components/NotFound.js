@@ -18,14 +18,14 @@ function NotFound() {
       <div className="buttons-container d-flex justify-content-center gap-4">
         <button
           type="button"
-          class="btn btn-success"
+          className="btn btn-success"
           onClick={() => navigate("/")}
         >
           Home
         </button>
         <button
           type="button"
-          class="btn btn-primary"
+          className="btn btn-primary"
           onClick={() => navigate(-1)}
         >
           back
