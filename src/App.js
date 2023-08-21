@@ -11,10 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { ShopLayout } from "./pages/ShopLayout";
 import { OperatorLayout } from "./pages/OperatorLayout";
 import { AddTask } from "./pages/AddTask";
+import { AllTasks } from "./pages/AllTasks";
+import { ViewTask } from "./pages/ViewTask";
 
 export const taskAppContext = createContext();
 function App() {
-  const tasks = [
+  const initialTasks = [
     {
       id: "01",
       description: "print Task",
@@ -40,11 +42,27 @@ function App() {
   const [isMobile, setIsMobile] = useState(
     window.innerWidth < 720 ? true : false
   );
+
+  const [operators, setOperators] = useState([]);
+  const [tasks, setTasks] = useState(initialTasks);
+  const [fetchTasksState, setFetchTasksState] = useState(false);
+  const [operatorTasks, setOperatorTasks] = useState([]);
+
+  const [userInfo, setUserInfo] = useState(null);
   const contextObj = {
     serverUrl: process.env.REACT_APP_SERVER_URL,
     clientUrl: process.env.REACT_APP_CLIENT_URL,
     isMobile,
+    operators,
+    setOperators,
     tasks,
+    setTasks,
+    fetchTasksState,
+    setFetchTasksState,
+    userInfo,
+    setUserInfo,
+    operatorTasks,
+    setOperatorTasks,
   };
 
   function handleResize() {
@@ -67,9 +85,16 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="shop" element={<ShopLayout />}>
               <Route index element={<AddTask />} />
+              <Route path="newTask" element={<AddTask />} />
+              <Route path="allTasks" element={<AllTasks tasks={tasks} />} />
+              <Route path="task/:id" element={<ViewTask />} />
             </Route>
             <Route path="operator" element={<OperatorLayout />}>
-              {/* <Route index element={<AddTask />} /> */}
+              <Route index element={<AllTasks tasks={operatorTasks} />} />
+              <Route
+                path="allTasks"
+                element={<AllTasks tasks={operatorTasks} />}
+              />
             </Route>
 
             <Route path="activate/:id" element={<ActivateUser />} />

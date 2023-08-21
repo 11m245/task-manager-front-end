@@ -1,7 +1,9 @@
+import { AddTaskForm } from "../components/AddTaskForm";
+
 function AddTask() {
   return (
-    <div className="add-task">
-      <h1>add task</h1>
+    <div className="add-task-container">
+      <AddTaskForm />
     </div>
   );
 }

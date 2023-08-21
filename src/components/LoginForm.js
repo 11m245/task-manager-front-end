@@ -9,7 +9,7 @@ import { CustomLoadingButton } from "./customLoadingButton";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const { serverUrl } = useContext(taskAppContext);
+  const { serverUrl, setUserInfo } = useContext(taskAppContext);
   const navigate = useNavigate();
   const initialValidationSchema = {
     email: yup.string().min(8).email(),
@@ -36,6 +36,11 @@ function LoginForm() {
         setIsLoading(false);
         toast.success(data.message);
         navigate(data.isOperator ? "/operator" : "/shop");
+        setUserInfo({
+          name: data.userInfo.name,
+          shopName: data.userInfo.shopName,
+          role: data.isOperator ? "operator" : "shop",
+        });
       } else {
         const data = await response.json();
         setIsLoading(false);
