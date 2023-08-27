@@ -10,7 +10,7 @@ import { taskAppContext } from "../App";
 function Navbar({ tasks }) {
   const { userInfo } = useContext(taskAppContext);
   const navigate = useNavigate();
-  console.log("tasks in nav bar", tasks);
+  // console.log("tasks in nav bar", tasks);
   return (
     <div className="nav-bar">
       <p>{userInfo ? userInfo.shopName : "Shop Name"}</p>

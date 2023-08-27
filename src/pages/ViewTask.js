@@ -15,7 +15,7 @@ function ViewTask() {
     );
     // console.log("foundOP", foundOperator);
 
-    return foundOperator ? foundOperator.name : userInfo.name;
+    return foundOperator ? foundOperator.name : userInfo.shopName;
   }
 
   async function fetchTask(taskId) {
@@ -38,59 +38,74 @@ function ViewTask() {
     fetchTask(id);
   }, []);
   return (
-    <div className="view-task-container">
-      <h3>view task {id}</h3>
-      {task ? (
-        <>
-          {" "}
-          <table>
-            <thead></thead>
-            <tbody>
-              <tr>
-                <td>Task Description</td>
-                <td>{task.description}</td>
-              </tr>
-              <tr>
-                <td>Status</td>
-                <td>{task.isCompleted === true ? "Completed" : "Pending"}</td>
-              </tr>
-              <tr>
-                <td>Created At</td>
-                <td>{task.createdAt}</td>
-              </tr>
-              <tr>
-                <td>Customer Name</td>
-                <td>{task.customerName}</td>
-              </tr>
-              <tr>
-                <td>Customer Mobile</td>
-                <td>{task.customerMobile}</td>
-              </tr>
-            </tbody>
-          </table>
-          <h4>History</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Time</td>
-                <td>Updated By</td>
-                <td>Reason</td>
-              </tr>
-            </thead>
-            <tbody>
-              {task?.history?.length > 0
-                ? task.history.map((history) => (
-                    <tr key={history.timeStamp}>
-                      <td>{new Date(history.timeStamp).toLocaleString()}</td>
-                      <td>{getOperatorNameFromId(history.updatedBy)}</td>
-                      <td>{history.reason}</td>
-                    </tr>
-                  ))
-                : null}
-            </tbody>
-          </table>
-        </>
-      ) : null}
+    <div className="view-task-page">
+      <div className="view-task-container">
+        <h3 className="table-title">Task Info</h3>
+        {task ? (
+          <>
+            {" "}
+            <table>
+              <thead>
+                <tr>
+                  <td>Task Description</td>
+                  <td className="bold-content">{task.description}</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Task Id</td>
+                  <td>{id}</td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td>{task.isCompleted === true ? "Completed" : "Pending"}</td>
+                </tr>
+                <tr>
+                  <td>Created At</td>
+                  <td>{new Date(task.createdAt).toLocaleString()}</td>
+                </tr>
+                <tr>
+                  <td>Customer Name</td>
+                  <td className="bold-content">{task.customerName}</td>
+                </tr>
+                <tr>
+                  <td>Customer Mobile</td>
+                  <td>{task.customerMobile}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h5 className="table-title">History</h5>
+            <table>
+              <thead>
+                <tr className="column-title">
+                  <td>Time</td>
+                  <td>Updated By</td>
+                  <td>Reason</td>
+                </tr>
+              </thead>
+              <tbody>
+                {task?.history?.length > 0
+                  ? task.history.map((history) => (
+                      <tr key={history.timeStamp}>
+                        <td>{new Date(history.timeStamp).toLocaleString()}</td>
+                        <td>{getOperatorNameFromId(history.updatedBy)}</td>
+                        <td
+                          className={
+                            history.reason === "created"
+                              ? "created"
+                              : "completed"
+                          }
+                        >
+                          {history.reason}
+                        </td>
+                      </tr>
+                    ))
+                  : null}
+              </tbody>
+            </table>
+          </>
+        ) : null}
+      </div>
     </div>
   );
 }
