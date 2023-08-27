@@ -97,3 +97,50 @@ gap: 10px;
 .all-tasks-container{
   padding: 20px;
 }
+.view-task-page{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding:40px ;
+}
+.view-task-container{
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+.view-task-container> .table-title{
+  text-align: center;
+}
+.view-task-container> table{
+  border-collapse: collapse;
+  
+}
+.view-task-container {
+  & table,th,td{
+  border: 1px solid #0d6efd;
+  padding: 5px 10px;
+}}
+
+.bold-content{
+font-weight: bold;
+color: blue;
+}
+
+.created{
+color: #0f63b7;
+}
+
+.completed{
+  color: blue;
+
+}
+
+.column-title{
+  font-weight: bold;
+  text-align: center;
+}
