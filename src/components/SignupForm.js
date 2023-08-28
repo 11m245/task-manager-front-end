@@ -25,20 +25,27 @@ function SignupForm() {
       .required()
       .oneOf([yup.ref("password"), null], "Passwords not matched"),
   };
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
-    useFormik({
-      initialValues: {
-        managerName: "",
-        mobile: "",
-        email: "",
-        shopName: "",
-        shopAddress: "",
-        password: "",
-        cpassword: "",
-      },
-      validationSchema: yup.object(initialValidationSchema),
-      onSubmit: () => signup(values),
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    resetForm,
+  } = useFormik({
+    initialValues: {
+      managerName: "",
+      mobile: "",
+      email: "",
+      shopName: "",
+      shopAddress: "",
+      password: "",
+      cpassword: "",
+    },
+    validationSchema: yup.object(initialValidationSchema),
+    onSubmit: () => signup(values),
+  });
 
   async function signup(values) {
     setIsLoading(true);

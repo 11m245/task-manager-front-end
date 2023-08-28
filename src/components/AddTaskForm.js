@@ -16,6 +16,8 @@ function AddTaskForm() {
     return { title: operator.name, id: operator._id, value: operator._id };
   });
 
+  console.log("opn", options);
+
   const initialValidationSchema = {
     description: yup.string().required(),
     assignedUser: yup.string().required(),

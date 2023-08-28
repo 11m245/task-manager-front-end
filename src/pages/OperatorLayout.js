@@ -20,7 +20,7 @@ function OperatorLayout() {
     // console.log("fetch Resp", operatorTasksResponse);
     if (operatorTasksResponse.status === 200) {
       const data = await operatorTasksResponse.json();
-      console.log("op tasks after fetch", data);
+      // console.log("op tasks after fetch", data);
       toast.success(data.message);
       setOperatorTasks(data.payload.tasks);
     } else {

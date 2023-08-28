@@ -52,7 +52,7 @@ function ShopLayout() {
       if (fetchResponse.status === 200) {
         const fetchedData = await fetchResponse.json();
         toast.success(fetchedData.message);
-        console.log("tasks,", fetchedData.payload.tasks);
+        // console.log("tasks,", fetchedData.payload.tasks);
         setTasks(fetchedData.payload.tasks);
       } else {
         const fetchedData = await fetchResponse.json();

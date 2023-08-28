@@ -5,15 +5,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function SelectInput({
-  label = "select",
-  options = [{ title: "option1", id: "id1", value: "op1" }],
-  value,
-  onChange,
-
-  name,
-}) {
+function SelectInput({ label = "select", options, value, onChange, name }) {
   const [selectValue, setSelectValue] = React.useState(value);
+
+  console.log("options select", options);
 
   const handleChange = (event) => {
     setSelectValue(event.target.value);
@@ -33,7 +28,7 @@ function SelectInput({
           name={name}
         >
           {options.map((option) => (
-            <MenuItem key={option.id} value={option.value}>
+            <MenuItem key={option._id} value={option.value}>
               {option.title}
             </MenuItem>
           ))}
